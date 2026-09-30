@@ -5,26 +5,20 @@ from des import encrypt, decrypt
 DES_KEY = "133457799BBCDFF1"
 PORT = 5000
 
-
 def receive_messages(sock):
     buffer = ""
-
     while True:
         try:
             data = sock.recv(4096)
-
             if not data:
                 print("\n[Connection closed by Device A]")
                 break
-
             buffer += data.decode("utf-8")
-
             while "\n" in buffer:
                 ciphertext, buffer = buffer.split("\n", 1)
 
                 if ciphertext.strip():
                     plaintext = decrypt(ciphertext, DES_KEY)
-
                     print("\n----------------------------------------")
                     print("Ciphertext received:")
                     print(ciphertext)
@@ -37,8 +31,6 @@ def receive_messages(sock):
         except Exception as e:
             print("\n[Receive error:", e, "]")
             break
-
-
 def main():
     print("========================================")
     print("          DES SECURE CHAT")
@@ -53,7 +45,6 @@ def main():
     server.listen(1)
 
     print("Waiting for Device A...")
-
     conn, addr = server.accept()
 
     print()
@@ -66,19 +57,15 @@ def main():
         args=(conn,),
         daemon=True
     )
-
     receiver.start()
 
     try:
         while True:
             message = input("Enter message: ")
-
             if message == "/exit":
                 break
-
             if not message.strip():
                 continue
-
             ciphertext = encrypt(message, DES_KEY)
 
             print()
@@ -92,17 +79,14 @@ def main():
             print()
 
             conn.sendall((ciphertext + "\n").encode("utf-8"))
-
     except Exception as e:
         print()
         print("Error:", e)
-
     finally:
         conn.close()
         server.close()
         print()
         print("Connection closed.")
-
 
 if __name__ == "__main__":
     main()
