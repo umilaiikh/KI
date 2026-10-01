@@ -1,10 +1,11 @@
-##Penjelasan Program
+# Penjelasan Program
+Umi Lailatul Khotimah (5025241062)
 
-### 1. des.py
+## **1. des.py**
 File des.py merupakan bagian utama dari project karena berisi implementasi algoritma DES yang digunakan untuk melakukan proses encryption dan decryption. Algoritma DES dibuat secara manual tanpa menggunakan library kriptografi. Di dalam file ini terdapat tabel-tabel standar DES seperti Initial Permutation (IP), Final Permutation (FP), Expansion (E), Permutation (P), PC-1, PC-2, dan S-Box yang digunakan dalam proses pengolahan bit. File ini juga mengatur pembentukan 16 subkey dari key utama melalui proses circular left shift, kemudian menjalankan 16 round Feistel untuk menghasilkan ciphertext. Fungsi `encrypt()` digunakan untuk mengubah plaintext menjadi ciphertext, sedangkan `decrypt()` digunakan untuk mengembalikan ciphertext menjadi plaintext. Terdapat juga proses padding agar data sesuai dengan ukuran blok DES yaitu 8 byte. Pada bagian akhir terdapat pengujian menggunakan standard test vector DES untuk memastikan implementasi sudah benar, yaitu key `133457799BBCDFF1` dan plaintext `0123456789ABCDEF` yang menghasilkan ciphertext `85E813540F0AB405`.
 
-### 2. device_a.py
+## **2. device_a.py**
 File `device_a.py` digunakan sebagai Device A yang dijalankan pada Windows dan bertugas menangani komunikasi dengan Device B melalui TCP/IP. Program menggunakan `socket` untuk membuat koneksi TCP dengan IP address Device B pada port `5000`. Saat user memasukkan pesan, pesan tersebut terlebih dahulu dienkripsi menggunakan fungsi `encrypt()` dari `des.py`, kemudian ciphertext dikirim melalui jaringan menggunakan `sendall()`. Device A juga dapat menerima ciphertext dari Device B menggunakan fungsi `receive_messages()`, kemudian ciphertext tersebut didekripsi menggunakan fungsi `decrypt()` dengan key yang sama. Program menggunakan `threading` agar proses menerima dan mengirim pesan dapat berjalan secara bersamaan sehingga komunikasi dapat dilakukan secara dua arah.
 
-### 3. device_b.py
+## **3. device_b.py**
 File `device_b.py` digunakan sebagai Device B yang dijalankan pada Ubuntu dan berfungsi sebagai server yang menunggu koneksi dari Device A. Program membuat socket TCP kemudian menggunakan `bind()` pada alamat `0.0.0.0` dan port `5000`, lalu menggunakan `listen()` untuk menunggu koneksi. Setelah Device A terhubung melalui `accept()`, Device B dapat menerima maupun mengirim pesan. Pesan yang akan dikirim terlebih dahulu dienkripsi menggunakan fungsi `encrypt()` dari `des.py`, sedangkan ciphertext yang diterima dari Device A akan didekripsi menggunakan fungsi `decrypt()` dengan key yang sama. Device B juga menggunakan `threading` agar dapat menerima pesan sambil tetap mengirim pesan, sehingga komunikasi antara Device A dan Device B dapat berjalan secara dua arah.
