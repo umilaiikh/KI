@@ -1,4 +1,4 @@
-###Deskripsi Program
+### Deskripsi Program
 Program mengimplementasikan Key Distribution Center (KDC) untuk mendistribusikan session key antara alice & bob. Komunikasi pesan dengan algoritma AES dengan pertukaran key dapat diperbarui tanpa restart program.
 
 ###Penjelasan Code
