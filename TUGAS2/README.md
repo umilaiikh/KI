@@ -12,9 +12,9 @@ Sebagai client alice yang meminta session key kepada KDC lalu melakukan autentik
 Sebagai client/server bob yang menerima koneksi dari alice, memverifikasi tiket dan autentikasi, serta melakukan komunikasi dua arah menggunakan session key AES. Bob juga mendukung pembaruan master key dari KDC.
 
 #### Konfigurasi Jaringan
-KDC: 192.168.180.130
-Port KDC: 5000
-Port pembaruan key: 5001
-Bob: 192.168.180.133
-Port Bob: 6000
-Alice: Windows
+#### KDC: 192.168.180.130
+#### Port KDC: 5000
+#### Port pembaruan key: 5001
+#### Bob: 192.168.180.133
+#### Port Bob: 6000
+#### Alice: Windows
