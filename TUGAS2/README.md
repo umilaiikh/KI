@@ -11,7 +11,7 @@ Sebagai client alice yang meminta session key kepada KDC lalu melakukan autentik
 #### bob.py
 Sebagai client/server bob yang menerima koneksi dari alice, memverifikasi tiket dan autentikasi, serta melakukan komunikasi dua arah menggunakan session key AES. Bob juga mendukung pembaruan master key dari KDC.
 
-#### Konfigurasi Jaringan
+### Konfigurasi Jaringan
 #### KDC: 192.168.180.130
 #### Port KDC: 5000
 #### Port pembaruan key: 5001
